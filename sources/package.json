@@ -1,0 +1,15 @@
+{
+  "name": "Ampel-web",
+  "version": "1.0.0",
+  "main": "ampel.js",
+  "scripts": {
+    "start": "node ampel.js"
+  },
+  "author": "Victor Cazacov",
+  "dependencies": {
+    "cors": "~2.7.1",
+    "express": "~4.4.3",
+    "jade": "^1.11.0",
+    "pi-gpio": "~0.0.8"
+  }
+}
