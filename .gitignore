@@ -1,3 +1,6 @@
+#Blender backups
+*.blend?
+
 # Logs
 logs
 *.log
