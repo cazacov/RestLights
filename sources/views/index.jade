@@ -1,26 +1,22 @@
 html
-   head
-      title Incoming Goods Monitor
-      script(src='https://code.jquery.com/jquery-2.2.2.min.js')
-      link(href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css", rel="stylesheet")
-      script(src='//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js')
-      link(href="css/site.css", rel="stylesheet")
-body
-   h1 Incoming Goods Monitor
-   hr
+    head
+        title Incoming Goods Monitor
+        script(src='https://code.jquery.com/jquery-2.2.2.min.js')
+        link(href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css", rel="stylesheet")
+        script(src='//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js')
+        link(href="css/site.css", rel="stylesheet")
+    body
+        h1 REST lights
+        hr
+        div(class="container")
+            ul#hexlist
+                for lamp in model
+                    li
+                        div(class="lamp")
+                            div(class="hb #{lamp.color}")
+                            div(class="h #{lamp.color}")
+                                a(href='#', ) #{lamp.counter}
+                            div(class="ha #{lamp.color}")
+                            div(class="o", onclick='test("#{lamp.color}"); return false')
 
-table
-   tr
-      th Color
-      th Pin
-      th Counter
-   for lamp in model
-      tr
-         td= lamp.color
-         td= lamp.pin
-         td= lamp.counter
-         td
-            button(onclick='test("#{lamp.color}"); return false') Test
-
-
-script(src='app/app.js')
+    script(src='app/app.js')

@@ -43,6 +43,8 @@ var express = require('express')
 console.log(__dirname);
 
 app.use(cors());
+//app.engine('html', require('ejs').renderFile);
+//app.set('view engine', 'html');
 app.set('view engine', 'jade');
 
 app.use('/css', express.static(__dirname + '/css/'));
@@ -51,6 +53,7 @@ app.use('/app', express.static(__dirname + '/app/'));
 
 app.get('/', function (req, res) {
     res.render('index', { model: lamps });
+    //res.render('index');
 });
 
 app.get('/blink/:color', function (req, res) {

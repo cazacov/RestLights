@@ -8,6 +8,7 @@
   "author": "Victor Cazacov",
   "dependencies": {
     "cors": "~2.7.1",
+    "ejs": "^2.4.1",
     "express": "~4.4.3",
     "jade": "^1.11.0",
     "pi-gpio": "~0.0.8"
