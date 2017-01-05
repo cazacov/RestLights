@@ -48,8 +48,8 @@ npm --version
 Lamps are controlled by transistor keys connected to GPIO pins as following:
 
 
-| Light        | pin number | GPIO  |
-| ------------- | ------------- | ----- |
+| Light        | Pin number on the board | GPIO number |
+| ------------- | -------------:| -----:|
 | Green | 12	 | 18 |
 | Yellow | 18| 24 |
 | Blue | 16 | 23 |
@@ -57,6 +57,19 @@ Lamps are controlled by transistor keys connected to GPIO pins as following:
 | Red | 7 | 4 |
 | Orange | 13 | 27 | 
  
-GPIO pinout
+##GPIO pinout
 
- ![GPIO pinout](https://github.com/cazacov/RestLights/blob/master/img/pinout.png?raw=true)
+<img src="https://github.com/cazacov/RestLights/blob/master/img/pinout.png?raw=true" alt="Raspberry Pi" width="352" height="359"/>
+
+
+##Circuits
+
+Every lamps is controlled by its own transistor BC 373-40 connected as following:
+
+<img src="https://github.com/cazacov/RestLights/blob/master/img/LED%20transistor.png?raw=true" alt="Lamp connection" />
+
+There are also two 5mm LEDs showing the status. One is connected to 5V pin and is always on when the Raspebrry is powerd. Another LED is activated by GPIO 25 (physical pin 22) when the program is started.
+
+<img src="https://github.com/cazacov/RestLights/blob/master/img/LEDs.png?raw=true" alt="Status LEDs" />
+ 
+  
