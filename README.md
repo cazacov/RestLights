@@ -1,7 +1,7 @@
 # RestLights
 Light Organ with REST interface
 
-#Installation
+#Software Installation
 
 Start with the latest version of Raspbian (tested with ver. 2016-11-25)
 
@@ -42,3 +42,21 @@ Check if Node is up-to-date:
 node --version
 npm --version
 ```
+
+#LED lamps
+
+Lamps are controlled by transistor keys connected to GPIO pins as following:
+
+
+| Light        | pin number | GPIO  |
+| ------------- | ------------- | ----- |
+| Green | 12	 | 18 |
+| Yellow | 18| 24 |
+| Blue | 16 | 23 |
+| Blue 2 | 15 | 22 |
+| Red | 7 | 4 |
+| Orange | 13 | 27 | 
+ 
+GPIO pinout
+
+ ![GPIO pinout](https://github.com/cazacov/RestLights/blob/master/img/pinout.png?raw=true)
