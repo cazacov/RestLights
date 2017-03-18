@@ -1,6 +1,8 @@
 # RestLights
 Light Organ with REST interface
 
+![REST Lights](https://github.com/cazacov/RestLights/blob/master/img/green.jpg?raw=true)
+
 #Software Installation
 
 Start with the latest version of Raspbian (tested with ver. 2016-11-25)
