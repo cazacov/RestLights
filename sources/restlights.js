@@ -1,7 +1,6 @@
 var blinkDuration = 10000;
 
 var lamps = require('./config/lamps.json');
-
 var Gpio = require("onoff").Gpio;
 
 console.log("Starting web server...");
@@ -12,15 +11,6 @@ var express = require('express')
 console.log(__dirname);
 
 app.use(cors());
-app.set('view engine', 'jade');
-
-app.use('/css', express.static(__dirname + '/css/'));
-app.use('/app', express.static(__dirname + '/app/'));
-
-
-app.get('/', function (req, res) {
-    res.render('index', { model: lamps });
-});
 
 app.get('/blink/:color', function (req, res) {
     console.log("POST " + req.params.color);
