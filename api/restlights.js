@@ -15,7 +15,7 @@ app.use(cors());
 app.get('/blink/:color', function (req, res) {
     console.log("POST " + req.params.color);
     incrementCounter(req.params.color);
-    res.render('index', { model: lamps });
+    return res.send("Accepted");
 });
 
 openPorts();
@@ -57,7 +57,7 @@ function blink(color, duration)
     {
         lamp.gpio.writeSync(1);
         setTimeout(function() {
-            lamp.gpio.write(0);
+            lamp.gpio.writeSync(0);
         }, duration);
     }
 }
@@ -91,6 +91,7 @@ function test() {
 }
 
 process.on('exit', function () {
+    console.log('Exit event');
     powerOff();
 });
 

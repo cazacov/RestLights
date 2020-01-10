@@ -6,6 +6,7 @@ Light Organ with REST interface
 #Software Installation
 
 Start with the latest version of Raspbian (tested with ver. 2016-11-25)
+Update: tested after  "apt-get upgrade" in January 2020.
 
 ### Update packages
 
@@ -18,12 +19,12 @@ sudo apt-get upgrade
 
 #### Raspberry Pi A/A+, B/B+ (ARM v6)
 
-```
+```bash
 sudo su -
 cd /opt
-wget http://nodejs.org/dist/latest-v6.x/node-v6.9.2-linux-armv6l.tar.gz
-tar -xvf node-v6.9.2-linux-armv6l.tar.gz
-ln -s node-v6.9.2-linux-armv6l node
+wget https://nodejs.org/dist/latest-v10.x/node-v10.18.1-linux-armv6l.tar.gz
+tar -xvf node-v10.18.1-linux-armv6l.tar.gz
+ln -s node-v10.18.1-linux-armv6l node
 chmod a+rw /opt/node/lib/node_modules
 chmod a+rw /opt/node/bin
 echo 'PATH=$PATH:/opt/node/bin' > /etc/profile.d/node.sh
@@ -40,7 +41,7 @@ Logout and log in back.
 
 Check if Node is up-to-date: 
 
-```
+```bash
 node --version
 npm --version
 ```
