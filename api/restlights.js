@@ -14,7 +14,14 @@ app.use(express.json());
 
 app.get('/lights', (req, res) => {
     console.log("GET lights");
-    return res.send(state.lights);
+    result = [];
+    state.lights.forEach((lamp) => {
+        result.push({
+            color: lamp.color,
+            durationMs: lamp.counter * 10000
+        });
+    });
+    return res.send(result);
 });
 
 app.get('/lights/:color', (req, res) => {
