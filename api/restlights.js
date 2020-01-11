@@ -2,6 +2,7 @@ var blinkDuration = 10000;
 
 var lamps = require('./config/lamps.json');
 var Gpio = require("onoff").Gpio;
+var unexported = false;
 
 console.log("Starting web server...");
 var express = require('express')
@@ -78,7 +79,14 @@ function powerOff()
 {
     var led = new Gpio(25, 'out');      // Pin 22
     led.writeSync(0);
-    console.log('bye');
+    if (!unexported) {
+        unexported = true;
+        lamps.forEach(function(lamp){
+            console.log("Unxeporting GPIO pin " + lamp.pin);
+            lamp.gpio.unexport();
+        });
+        console.log('bye');
+    }
 }
 
 function test() {

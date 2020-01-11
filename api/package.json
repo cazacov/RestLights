@@ -1,5 +1,5 @@
 {
-  "name": "Ampel-web",
+  "name": "restlights-api",
   "version": "1.0.0",
   "main": "restlights.js",
   "scripts": {
@@ -7,8 +7,8 @@
   },
   "author": "Victor Cazacov",
   "dependencies": {
-    "cors": "~2.7.1",
-    "express": "~4.4.3",
-    "onoff": "^1.1.1"
+    "cors": "~2.8.5",
+    "express": "~4.17.1",
+    "onoff": "~5.0.1"
   }
 }
