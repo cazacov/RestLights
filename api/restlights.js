@@ -1,19 +1,23 @@
-var blinkDuration = 10000;
-
-var lamps = require('./config/lamps.json');
+var state = require('./config/config.json');
 var Gpio = require("onoff").Gpio;
 var unexported = false;
 
 console.log("Starting web server...");
 var express = require('express')
-    , cors = require('cors')
-    , app = express();
+    , cors = require('cors');
 
 console.log(__dirname);
 
+const app = express();
 app.use(cors());
+app.use(express.json());
 
-app.get('/blink/:color', function (req, res) {
+app.get('/lights', (req, res) => {
+    console.log("GET lights");
+    return res.send(state.lights);
+});
+
+app.get('/lights/:color', (req, res) => {
     console.log("POST " + req.params.color);
     incrementCounter(req.params.color);
     return res.send("Accepted");
@@ -25,7 +29,7 @@ setInterval(updateLamps, 500);
 
 function incrementCounter(color)
 {
-    lamps.forEach(function(lamp){
+    state.lights.forEach(function(lamp){
         if (lamp.color === color)
         {
             lamp.counter++;
@@ -36,7 +40,7 @@ function incrementCounter(color)
 
 function updateLamps()
 {
-    lamps.forEach(function(lamp){
+    state.lights.forEach(function(lamp){
         if (lamp.counter > 0)
         {
             var value = lamp.gpio.readSync();
@@ -44,7 +48,7 @@ function updateLamps()
             {
                 lamp.counter--;
                 console.log("Blinking lamp " + lamp.color + ": " + lamp.counter);
-                blink(lamp.color, blinkDuration);
+                blink(lamp.color, state.counterTickMs);
             }
         }
     });
@@ -52,7 +56,7 @@ function updateLamps()
 
 function blink(color, duration)
 {
-    var lamp = lamps.find(function filter(elem) { return elem.color === color;});
+    var lamp = state.lights.find(function filter(elem) { return elem.color === color;});
 
     if (lamp)
     {
@@ -66,7 +70,7 @@ function blink(color, duration)
 function openPorts()
 {
     // Initialize Raspberry GPIO
-    lamps.forEach(function(lamp){
+    state.lights.forEach(function(lamp){
         console.log("Opening GPIO pin " + lamp.pin);
         lamp.gpio = new Gpio(lamp.pin, 'out');
     });
@@ -81,7 +85,7 @@ function powerOff()
     led.writeSync(0);
     if (!unexported) {
         unexported = true;
-        lamps.forEach(function(lamp){
+        state.lights.forEach(function(lamp){
             console.log("Unxeporting GPIO pin " + lamp.pin);
             lamp.gpio.unexport();
         });
@@ -119,6 +123,6 @@ process.on('SIGTERM', function () {
 
 
 var port = 3000;
-app.listen(port, function() {
-    console.log('Server listening at %s', port);
+app.listen(port, () => {
+    console.log('Server listening at %s', port); 
 });

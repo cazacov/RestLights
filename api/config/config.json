@@ -1,0 +1,35 @@
+{
+    "counterTickMs": 10000,
+    "lights": [
+        {
+            "pin": 18,          
+            "color": "green",
+            "counter": 0
+        },
+        {
+            "pin": 24,          
+            "color": "yellow",
+            "counter": 0
+        },
+        {
+            "pin": 23,          
+            "color": "blue",
+            "counter": 0
+        },
+        {
+            "pin": 22,          
+            "color": "blue2",
+            "counter": 0
+        },
+        {
+            "pin": 4,           
+            "color": "red",
+            "counter": 0
+        },
+        {
+            "pin": 27,          
+            "color": "orange",
+            "counter": 0
+        }
+    ]
+}
