@@ -1,5 +1,6 @@
 {
-    "counterTickMs": 10000,
+    "counterTickMs": 500,
+    "blinkDurationTicks": 10,
     "lights": [
         {
             "pin": 18,          

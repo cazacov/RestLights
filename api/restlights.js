@@ -18,7 +18,7 @@ app.get('/lights', (req, res) => {
     state.lights.forEach((lamp) => {
         result.push({
             color: lamp.color,
-            durationMs: lamp.counter * 10000
+            durationMs: lamp.counter * state.counterTickMs
         });
     });
     return res.send(result);
@@ -26,21 +26,22 @@ app.get('/lights', (req, res) => {
 
 app.get('/lights/:color', (req, res) => {
     console.log("POST " + req.params.color);
-    incrementCounter(req.params.color);
+    incrementCounter(req.params.color, state.blinkDurationTicks);
     return res.send("Accepted");
 });
 
 openPorts();
 test();
-setInterval(updateLamps, 500);
+setInterval(updateLamps, state.counterTickMs);
 
-function incrementCounter(color)
+function incrementCounter(color, increment)
 {
     state.lights.forEach(function(lamp){
         if (lamp.color === color)
         {
-            lamp.counter++;
-            console.log("New counter value: " + lamp.counter);
+            console.log("Increment: " + increment);
+            lamp.counter += increment;
+            console.log("New counter value for " + color + " is: " + lamp.counter);
         }
     });
 }
@@ -48,15 +49,19 @@ function incrementCounter(color)
 function updateLamps()
 {
     state.lights.forEach(function(lamp){
+
+        var value = lamp.gpio.readSync();
         if (lamp.counter > 0)
         {
-            var value = lamp.gpio.readSync();
             if (!value)
             {
-                lamp.counter--;
-                console.log("Blinking lamp " + lamp.color + ": " + lamp.counter);
-                blink(lamp.color, state.counterTickMs);
+                lamp.gpio.writeSync(1);
+//                blink(lamp.color, state.counterTickMs);
             }
+            lamp.counter--;
+        }
+        else if (value) {
+            lamp.gpio.writeSync(0);                
         }
     });
 }
