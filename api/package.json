@@ -8,7 +8,7 @@
   "author": "Victor Cazacov",
   "dependencies": {
     "cors": "~2.7.1",
-    "express": "~4.4.3",
+    "express": "~4.17.1",
     "onoff": "^1.1.1"
   }
 }
